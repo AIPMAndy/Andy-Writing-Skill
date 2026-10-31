@@ -1,0 +1,493 @@
+{
+  "version": "1.0.0",
+  "first_party": [
+    {
+      "id": "andy-ip-skill",
+      "name": "Andy IP Skill (legacy router)",
+      "url": "https://github.com/AIPMAndy/andy-ip-skill",
+      "use": "Reference for prior intent routing; do not invoke outdated targets directly",
+      "stage": "reference"
+    },
+    {
+      "id": "wechat-explosive-article-skill",
+      "name": "公众号爆款写作",
+      "url": "https://github.com/AIPMAndy/wechat-explosive-article-skill",
+      "use": "Deep WeChat articles, evidence, storytelling and adversarial review",
+      "stage": "draft"
+    },
+    {
+      "id": "GaoMiDuSkill",
+      "name": "高密度写作",
+      "url": "https://github.com/AIPMAndy/GaoMiDuSkill",
+      "use": "Remove fluff; strengthen verifiable, actionable information",
+      "stage": "edit"
+    },
+    {
+      "id": "FanZhuanSkill",
+      "name": "反转大师",
+      "url": "https://github.com/AIPMAndy/FanZhuanSkill",
+      "use": "Light observational humor and surprise without invented facts",
+      "stage": "optional"
+    },
+    {
+      "id": "copyflow",
+      "name": "CopyFlow",
+      "url": "https://github.com/AIPMAndy/copyflow",
+      "use": "Draft variations and review-ready content; publishing adapters are partial",
+      "stage": "batch"
+    },
+    {
+      "id": "Andy-Content-Checker",
+      "name": "内容风险检查",
+      "url": "https://github.com/AIPMAndy/Andy-Content-Checker",
+      "use": "Platform risk flags; not a guarantee of compliance or distribution",
+      "stage": "check"
+    },
+    {
+      "id": "IPClaw-Speech",
+      "name": "IPClaw 口播版",
+      "url": "https://github.com/AIPMAndy/IPClaw-Speech",
+      "use": "Speech hooks, oral script, pacing and topic ideation",
+      "stage": "draft"
+    },
+    {
+      "id": "MDskill-Web",
+      "name": "MDskill-Web",
+      "url": "https://github.com/AIPMAndy/MDskill-Web",
+      "use": "Markdown visual formatting and WeChat rich text export",
+      "stage": "export"
+    },
+    {
+      "id": "MDskill",
+      "name": "MDskill",
+      "url": "https://github.com/AIPMAndy/MDskill",
+      "use": "Markdown editing and structured long-form preparation",
+      "stage": "export"
+    },
+    {
+      "id": "obsidian-mdskill",
+      "name": "Obsidian MDskill",
+      "url": "https://github.com/AIPMAndy/obsidian-mdskill",
+      "use": "Obsidian to WeChat formatting",
+      "stage": "export"
+    },
+    {
+      "id": "AndyImage",
+      "name": "AndyImage",
+      "url": "https://github.com/AIPMAndy/AndyImage",
+      "use": "Supporting image prompt ideas, not an image generator",
+      "stage": "optional"
+    },
+    {
+      "id": "andy-follows",
+      "name": "Andy Follows",
+      "url": "https://github.com/AIPMAndy/andy-follows",
+      "use": "Optional research/digest inputs, do not claim verified news without evidence",
+      "stage": "research"
+    },
+    {
+      "id": "IPClaw",
+      "name": "IPClaw 内容系统",
+      "url": "https://github.com/AIPMAndy/IPClaw",
+      "use": "Positioning, content ideas and draft references",
+      "stage": "reference"
+    },
+    {
+      "id": "DissSkill",
+      "name": "DissSkill 对抗式审稿参考",
+      "url": "https://github.com/AIPMAndy/DissSkill",
+      "use": "Challenge assumptions and missing evidence in high-stakes claims (only by request)",
+      "stage": "optional"
+    },
+    {
+      "id": "IPClaw-for-Seniors",
+      "name": "银发内容参考",
+      "url": "https://github.com/AIPMAndy/IPClaw-for-Seniors",
+      "use": "Accessible content workflows for senior audiences, not a general writer",
+      "stage": "reference"
+    },
+    {
+      "id": "andytici",
+      "name": "提词器参考",
+      "url": "https://github.com/AIPMAndy/andytici",
+      "use": "Teleprompter-related supporting tool; verify capability before use",
+      "stage": "optional"
+    }
+  ],
+  "third_party": [
+    {
+      "id": "humanizer",
+      "name": "Humanizer",
+      "url": "https://github.com/blader/humanizer",
+      "file": "SKILL.md",
+      "license": "MIT (verify upstream on update)",
+      "use": "Edit AI-sounding phrases while keeping source facts",
+      "stage": "edit"
+    },
+    {
+      "id": "copywriting",
+      "name": "Copywriting",
+      "url": "https://github.com/alirezarezvani/claude-skills/blob/main/marketing-skill/skills/copywriting/SKILL.md",
+      "license": "MIT (verify upstream on update)",
+      "use": "Clear commercial offers, landing pages, proof-first CTAs",
+      "stage": "draft"
+    },
+    {
+      "id": "content-strategy",
+      "name": "Content Strategy",
+      "url": "https://github.com/alirezarezvani/claude-skills/blob/main/marketing-skill/skills/content-strategy/SKILL.md",
+      "license": "MIT (verify upstream on update)",
+      "use": "Audience, editorial calendar and content planning",
+      "stage": "plan"
+    }
+  ],
+  "scenarios": {
+    "cold_knowledge": {
+      "name": "冷知识短帖",
+      "file": "skills/cold-knowledge.md",
+      "keywords": [
+        "冷知识",
+        "免费替代",
+        "不用付钱",
+        "省钱妙招",
+        "隐藏功能",
+        "你不知道",
+        "生活技巧",
+        "免费开源"
+      ],
+      "pipeline": [
+        "andy-cold-knowledge",
+        "GaoMiDuSkill",
+        "humanizer",
+        "Andy-Content-Checker"
+      ]
+    },
+    "threads": {
+      "name": "Threads 自然短帖",
+      "file": "skills/threads.md",
+      "keywords": [
+        "threads",
+        "串文",
+        "短帖",
+        "短推",
+        "生活观察",
+        "日常吐槽",
+        "发帖"
+      ],
+      "pipeline": [
+        "andy-threads",
+        "GaoMiDuSkill",
+        "humanizer",
+        "Andy-Content-Checker"
+      ]
+    },
+    "x_longform": {
+      "name": "X 图文长文",
+      "file": "skills/x-longform.md",
+      "keywords": [
+        "x长文",
+        "x 长文",
+        "twitter长文",
+        "twitter 长文",
+        "推特长文",
+        "长推文",
+        "threadstorm",
+        "x thread",
+        "x图文",
+        "x 图文"
+      ],
+      "pipeline": [
+        "andy-x-longform",
+        "GaoMiDuSkill",
+        "humanizer",
+        "Andy-Content-Checker"
+      ]
+    },
+    "wechat": {
+      "name": "公众号深度文章",
+      "file": "skills/wechat.md",
+      "keywords": [
+        "公众号",
+        "微信文章",
+        "公众号文章",
+        "深度长文",
+        "公众号长文",
+        "微信长文"
+      ],
+      "pipeline": [
+        "wechat-explosive-article-skill",
+        "GaoMiDuSkill",
+        "humanizer",
+        "Andy-Content-Checker",
+        "MDskill-Web"
+      ]
+    },
+    "xiaohongshu": {
+      "name": "小红书图文",
+      "file": "skills/xiaohongshu.md",
+      "keywords": [
+        "小红书",
+        "rednote",
+        "red note",
+        "笔记",
+        "种草笔记"
+      ],
+      "pipeline": [
+        "andy-xiaohongshu",
+        "GaoMiDuSkill",
+        "humanizer",
+        "Andy-Content-Checker"
+      ]
+    },
+    "video_script": {
+      "name": "视频口播脚本",
+      "file": "skills/video-script.md",
+      "keywords": [
+        "口播",
+        "视频脚本",
+        "提词器",
+        "逐字稿",
+        "短视频",
+        "口播文案",
+        "视频文案",
+        "演讲稿",
+        "讲解词"
+      ],
+      "pipeline": [
+        "IPClaw-Speech",
+        "GaoMiDuSkill",
+        "humanizer",
+        "Andy-Content-Checker"
+      ]
+    },
+    "marketing": {
+      "name": "产品/服务转化文案",
+      "file": "skills/marketing.md",
+      "keywords": [
+        "转化文案",
+        "卖点",
+        "着陆页",
+        "落地页",
+        "宣传文案",
+        "广告文案",
+        "卖课",
+        "服务广告",
+        "成交文案",
+        "销售文案",
+        "产品介绍",
+        "价格页"
+      ],
+      "pipeline": [
+        "copywriting",
+        "GaoMiDuSkill",
+        "humanizer",
+        "Andy-Content-Checker"
+      ]
+    },
+    "strategy": {
+      "name": "选题与内容策略",
+      "file": "skills/strategy.md",
+      "keywords": [
+        "选题规划",
+        "内容策略",
+        "排期",
+        "内容日历",
+        "账号定位",
+        "内容规划",
+        "选题库",
+        "爆款拆解",
+        "流量复盘",
+        "增长策略"
+      ],
+      "pipeline": [
+        "content-strategy",
+        "copyflow",
+        "GaoMiDuSkill"
+      ]
+    },
+    "editing": {
+      "name": "改写去 AI 味",
+      "file": "skills/editing.md",
+      "keywords": [
+        "改写",
+        "润色",
+        "去ai味",
+        "去 ai 味",
+        "真人化",
+        "人味",
+        "精简",
+        "去套话",
+        "文字修改",
+        "改得自然",
+        "像真人"
+      ],
+      "pipeline": [
+        "humanizer",
+        "GaoMiDuSkill",
+        "Andy-Content-Checker"
+      ]
+    },
+    "compliance": {
+      "name": "内容风险审查",
+      "file": "skills/compliance.md",
+      "keywords": [
+        "合规审核",
+        "内容审核",
+        "违禁词",
+        "能不能发",
+        "平台风险",
+        "审稿",
+        "风险检查",
+        "虚假宣传",
+        "审核这段",
+        "违规风险",
+        "审核一下",
+        "检查文案",
+        "限流风险"
+      ],
+      "pipeline": [
+        "Andy-Content-Checker"
+      ]
+    },
+    "whitepaper": {
+      "name": "报告/白皮书",
+      "file": "skills/whitepaper.md",
+      "keywords": [
+        "白皮书",
+        "研究报告",
+        "行业报告",
+        "调研报告",
+        "深度报告",
+        "商业分析报告",
+        "技术报告"
+      ],
+      "pipeline": [
+        "andy-whitepaper",
+        "GaoMiDuSkill",
+        "humanizer"
+      ]
+    },
+    "general": {
+      "name": "通用写作",
+      "file": "skills/general.md",
+      "keywords": [],
+      "pipeline": [
+        "andy-general",
+        "GaoMiDuSkill",
+        "humanizer"
+      ]
+    },
+    "x_short": {
+      "name": "X / Twitter 简短帖子",
+      "file": "skills/x-short.md",
+      "keywords": [
+        "x短帖",
+        "x 短帖",
+        "推文",
+        "发推",
+        "x上发",
+        "发到x",
+        "twitter post",
+        "tweet"
+      ],
+      "pipeline": [
+        "andy-x-short",
+        "GaoMiDuSkill",
+        "humanizer",
+        "Andy-Content-Checker"
+      ]
+    },
+    "email": {
+      "name": "邮件与职场沟通",
+      "file": "skills/email.md",
+      "keywords": [
+        "邮件",
+        "email",
+        "客户回复",
+        "跟进邮件",
+        "商务邮件",
+        "求职邮件",
+        "求职信"
+      ],
+      "pipeline": [
+        "andy-email",
+        "GaoMiDuSkill",
+        "humanizer"
+      ]
+    },
+    "docs": {
+      "name": "GitHub README 与技术文档",
+      "file": "skills/docs.md",
+      "keywords": [
+        "readme",
+        "使用文档",
+        "文档教程",
+        "api 文档",
+        "技术文档",
+        "安装指南",
+        "开发文档"
+      ],
+      "pipeline": [
+        "andy-docs",
+        "GaoMiDuSkill",
+        "humanizer"
+      ]
+    },
+    "seo_geo": {
+      "name": "SEO / GEO 搜索内容",
+      "file": "skills/seo-geo.md",
+      "keywords": [
+        "seo",
+        "geo优化",
+        "geo 优化",
+        "搜索引擎",
+        "关键词优化",
+        "ai搜索",
+        "ai 搜索",
+        "收录优化"
+      ],
+      "pipeline": [
+        "andy-seo-geo",
+        "GaoMiDuSkill",
+        "humanizer",
+        "Andy-Content-Checker"
+      ]
+    },
+    "proposal": {
+      "name": "商业合作与客户提案",
+      "file": "skills/proposal.md",
+      "keywords": [
+        "商业合作方案",
+        "合作方案",
+        "服务方案",
+        "企业提案",
+        "报价方案",
+        "投标文案",
+        "商务提案"
+      ],
+      "pipeline": [
+        "andy-proposal",
+        "copywriting",
+        "GaoMiDuSkill",
+        "humanizer"
+      ]
+    },
+    "english_reply": {
+      "name": "英文社交回复与交流",
+      "file": "skills/english-reply.md",
+      "keywords": [
+        "美式英语回复",
+        "英文回复",
+        "回复推文",
+        "英文评论",
+        "美语口语",
+        "native english reply"
+      ],
+      "pipeline": [
+        "andy-english-reply",
+        "humanizer",
+        "GaoMiDuSkill"
+      ]
+    }
+  }
+}

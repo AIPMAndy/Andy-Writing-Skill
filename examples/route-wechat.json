@@ -1,0 +1,19 @@
+{
+  "scenario": "wechat",
+  "scenario_name": "公众号深度文章",
+  "matched": [
+    "公众号"
+  ],
+  "score": 11,
+  "platform": "wechat",
+  "pipeline": [
+    "wechat-explosive-article-skill",
+    "GaoMiDuSkill",
+    "humanizer",
+    "Andy-Content-Checker",
+    "MDskill-Web"
+  ],
+  "skill_file": "skills/wechat.md",
+  "method": "local-rules",
+  "requires_remote": false
+}

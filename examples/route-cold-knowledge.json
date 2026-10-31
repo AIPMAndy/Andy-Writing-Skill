@@ -1,0 +1,19 @@
+{
+  "scenario": "cold_knowledge",
+  "scenario_name": "冷知识短帖",
+  "matched": [
+    "冷知识"
+  ],
+  "score": 29,
+  "platform": "threads",
+  "pipeline": [
+    "andy-cold-knowledge",
+    "copywriting",
+    "GaoMiDuSkill",
+    "humanizer",
+    "Andy-Content-Checker"
+  ],
+  "skill_file": "skills/cold-knowledge.md",
+  "method": "local-rules",
+  "requires_remote": false
+}

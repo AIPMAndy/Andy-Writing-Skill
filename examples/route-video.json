@@ -1,0 +1,19 @@
+{
+  "scenario": "video_script",
+  "scenario_name": "视频口播脚本",
+  "matched": [
+    "口播",
+    "提词器"
+  ],
+  "score": 30,
+  "platform": null,
+  "pipeline": [
+    "IPClaw-Speech",
+    "GaoMiDuSkill",
+    "humanizer",
+    "Andy-Content-Checker"
+  ],
+  "skill_file": "skills/video-script.md",
+  "method": "local-rules",
+  "requires_remote": false
+}
