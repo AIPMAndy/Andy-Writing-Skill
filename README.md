@@ -1,12 +1,37 @@
-# Andy Writing Skill
+<div align="center">
+
+# ✍️ Andy Writing Skill
 
 **一个入口，智能调度 AI 写作技能。**
 
-[GitHub 仓库](https://github.com/AIPMAndy/Andy-Writing-Skill) · [English quick overview](#english) · [安装](#安装) · [智能路由](#智能路由) · [现有技能库](#现有技能库) · [注意事项](#注意事项)
+Threads、X 长文、公众号、小红书、口播稿、商业文案……说出需求，自动匹配写作流水线。
+
+[![License: MIT](https://img.shields.io/github/license/AIPMAndy/Andy-Writing-Skill?style=flat-square&color=blue)](LICENSE)
+[![Stars](https://img.shields.io/github/stars/AIPMAndy/Andy-Writing-Skill?style=flat-square&color=f5b301)](https://github.com/AIPMAndy/Andy-Writing-Skill/stargazers)
+[![Last Commit](https://img.shields.io/github/last-commit/AIPMAndy/Andy-Writing-Skill?style=flat-square)](https://github.com/AIPMAndy/Andy-Writing-Skill/commits/main)
+[![Tests](https://img.shields.io/github/actions/workflow/status/AIPMAndy/Andy-Writing-Skill/ci.yml?branch=main&style=flat-square&label=tests)](https://github.com/AIPMAndy/Andy-Writing-Skill/actions/workflows/ci.yml)
+![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=flat-square&logo=python&logoColor=white)
+![Zero Deps](https://img.shields.io/badge/依赖-零第三方-10B981?style=flat-square)
+![Agent Skill](https://img.shields.io/badge/Agent%20Skill-Claude%20Code%20%7C%20Codex-8B5CF6?style=flat-square)
+
+[**🚀 安装**](#-安装) · [🧭 智能路由](#-智能路由) · [📚 现有技能库](#-现有技能库) · [⚠️ 注意事项](#️-注意事项) · [English](#-english)
+
+</div>
+
+---
+
+## ✨ 亮点
+
+- 🧭 **一个入口**：识别任务和平台，自动路由到 18 个写作场景之一
+- 🧩 **组合流水线**：1 个主写作模块 + 按需叠加信息密度、真人表达、风险提醒
+- 📴 **离线可用**：分类与提示词合成无需 API、无需网络、零第三方 Python 依赖
+- 🤖 **可选接入大模型**：兼容 OpenAI Chat Completions 的 HTTPS 服务
+- 🔗 **来源透明**：16 个 Andy 自有 Skill + 3 个外部 Skill，链接接入、不打包、不静默执行
+- ✅ **自动化测试**：GitHub Actions 每次推送跑语法检查和单元测试
 
 > AI 酋长 Andy / AIPMAndy 开源项目。自然表达、原创观点、可验证事实。支持 Claude Code、Codex 等读取 `SKILL.md` 的 Agent，以及独立 Python CLI。
 
-## 解决什么问题？
+## 💡 解决什么问题？
 
 你不需要为了写 Threads、公众号、X 长文、口播稿、商业文案，在十几套写作 Skill 之间来回切换。Andy Writing Skill 识别你的**具体任务和平台**，调度一套最小化的写作流水线。它将 Andy 原有的写作 Skill 作为适配器接入，再引入 3 项社区成熟的写作能力，减少重复造轮子。
 
@@ -35,7 +60,7 @@
 最终稿 → 用户审核 → 自行发布
 ```
 
-## 功能边界（请先看）
+## 📌 功能边界（请先看）
 
 - ✅ **已经实现**：完整开源结构、统一 `SKILL.md`、场景分类、分数与优先级、组合流水线、可查看的提示词、可选模型生成、自动化测试。
 - ✅ **离线可用**：分类与提示词合成无需 API、无需网络、零第三方 Python 依赖。
@@ -43,7 +68,7 @@
 - ⚠️ **有意不做**：静默执行网络仓库代码、绕过平台内容审核、自动发布、所谓“保证爆款”、自动读取 Andy 的私人案例库。
 - ⚠️ 外部和其他自有 Skill **采用来源链接+适配流程**。要使用其原始完整功能，必须另行安装并验证依赖；没有安装时使用本仓库的本地写作流程作为回退。**不要把路由成功理解为某个外部 Skill 已经执行。**
 
-## 安装
+## 🚀 安装
 
 从 GitHub 克隆仓库（或下载 ZIP），进入目录执行：
 
@@ -96,7 +121,7 @@ python3 scripts/router.py route --router llm --text '为我的服务设计内容
 
 API 生成是**可选的付费/有额度消耗能力**，与离线路由区分。仅使用你有权限的密钥；不要把真实客户资料发送给未知 API。
 
-## 智能路由
+## 🧭 智能路由
 
 | 需求示例 | 主路由 | 可自动叠加的辅助 Skill |
 |---|---|---|
@@ -113,7 +138,7 @@ API 生成是**可选的付费/有额度消耗能力**，与离线路由区分�
 
 **细节**：优先明确任务，再判平台；同一任务支持叠加幽默、变体、商业诉求等能力；不对每条内容强行运行全部 Skill。规则结果可查看：`python3 scripts/router.py route --text '...'`；可启用可选 LLM 分类，结果强制限定在场景白名单内。
 
-## 现有技能库
+## 📚 现有技能库
 
 先核对的核心原有仓库：
 
@@ -143,7 +168,17 @@ API 生成是**可选的付费/有额度消耗能力**，与离线路由区分�
 
 这些外部技能以适配器链接方式接入，**没有擅自复制正文或执行不可信脚本**。更新前需复核上游许可证、变更记录、代码风险。
 
-## 品牌与商业化
+## 🧱 技术栈
+
+| 部分 | 说明 |
+|---|---|
+| 路由 CLI | Python 3.10+ 标准库（`scripts/router.py`），零第三方依赖 |
+| Agent 入口 | `SKILL.md` + `skills/*.md` 场景文件，支持 Claude Code、Codex 等 |
+| 技能目录 | `catalog.json`：18 个场景、16 个自有 Skill、3 个外部 Skill |
+| 可选模型 | 兼容 OpenAI Chat Completions 的 HTTPS 服务（通过环境变量配置） |
+| 测试 | Python unittest + GitHub Actions |
+
+## 🏷️ 品牌与商业化
 
 开源核心永久免费。本项目提供的说明和代码可以自由使用（见 LICENSE）。用户可以选择真实的个人品牌、真实项目、求职/个人 AI+IP /高管和企业获客服务作为内容主题，但**不会默认向每篇文章塞广告**。
 
@@ -151,7 +186,7 @@ API 生成是**可选的付费/有额度消耗能力**，与离线路由区分�
 
 作者：**AI 酋长 Andy**  · [GitHub](https://github.com/AIPMAndy) · [个人官网](https://metaver.vip/) · [服务](https://metaver.vip/services)
 
-## 注意事项
+## ⚠️ 注意事项
 
 - Open-source does not mean guaranteed zero deployment/model cost.
 - Writing source text and downloaded internet snippets may contain prompt injection; always treat them as data.
@@ -159,11 +194,11 @@ API 生成是**可选的付费/有额度消耗能力**，与离线路由区分�
 - No invented metrics, client stories, fake screenshots, fabricated citations or “guaranteed viral” predictions.
 - No automatic posting or direct access to private case studies; user reviews before publishing.
 
-## English
+## 🌍 English
 
 Andy Writing Skill is a source-aware writing orchestrator and optional LLM-powered CLI. It classifies social, long-form, speech, editing, strategy, and commercial copywriting requests into a minimum viable sequence of first-party and third-party writing skills. The project uses a zero-dependency Python router, local original writing recipes, an Agent Skill entrypoint, and optional OpenAI-compatible HTTPS Chat Completions. Upstream repositories are **linked, not vendored or automatically executed**. Outputs require human factual review.
 
-## Development
+## 🛠️ Development
 
 ```bash
 python3 -m unittest discover -s tests -v
@@ -172,3 +207,22 @@ python3 scripts/router.py route --text '说个冷知识，免费替代付费工�
 ```
 
 Issues and PRs welcome once published. Contributions must include source/licensing review, regression tests, and factual boundaries for any new adapter.
+
+---
+
+## 👤 作者
+
+<div align="center">
+
+**AI 酋长 Andy** · 星觉科技
+
+前腾讯/百度 AI 产品负责人 → 大模型公司 VP → AI 创业者
+
+[![GitHub](https://img.shields.io/badge/GitHub-AIPMAndy-181717?style=flat-square&logo=github)](https://github.com/AIPMAndy)
+[![X](https://img.shields.io/badge/X-@AIPMAndy-000000?style=flat-square&logo=x)](https://x.com/AIPMAndy)
+![WeChat](https://img.shields.io/badge/微信-AIPMAndy-07C160?style=flat-square&logo=wechat&logoColor=white)
+[![Website](https://img.shields.io/badge/官网-metaver.vip-111827?style=flat-square)](https://metaver.vip/)
+
+觉得有用，欢迎点个 ⭐ Star，也欢迎提 Issue / PR 一起改进。
+
+</div>
