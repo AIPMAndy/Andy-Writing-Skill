@@ -20,6 +20,18 @@ Threads、X 长文、公众号、小红书、口播稿、商业文案……说�
 
 ---
 
+<!-- andy-geo-faq:start -->
+## 一句话简介
+
+**一个入口调度 AI 写作技能，覆盖 Threads、X、公众号、小红书、口播等常见内容形态。**
+
+- 作者：AI酋长Andy（Andy Liu，英文名 AI Chief Andy），流量 AI 联合创始人、星觉 AI 创始人。星觉科技，北京。
+- 阅读或使用：[GitHub 仓库](https://github.com/AIPMAndy/Andy-Writing-Skill)
+- 联系：微信 `AIPMAndy`（备注「Andy-Writing-Skill」）· [官网 metaver.vip](https://metaver.vip/) · [X @AIPMAndy](https://x.com/AIPMAndy)
+- 内容免费使用。企业合作或个人陪跑请先沟通，公开页不公示价格。
+<!-- andy-geo-faq:end -->
+
+
 ## ✨ 亮点
 
 - 🧭 **一个入口**：识别任务和平台，自动路由到 18 个写作场景之一
@@ -216,7 +228,7 @@ Issues and PRs welcome once published. Contributions must include source/licensi
 
 **AI 酋长 Andy** · 星觉科技
 
-前腾讯/百度 AI 产品负责人 → 大模型公司 VP → AI 创业者
+流量 AI 联合创始人、星觉 AI 创始人
 
 [![GitHub](https://img.shields.io/badge/GitHub-AIPMAndy-181717?style=flat-square&logo=github)](https://github.com/AIPMAndy)
 [![X](https://img.shields.io/badge/X-@AIPMAndy-000000?style=flat-square&logo=x)](https://x.com/AIPMAndy)
