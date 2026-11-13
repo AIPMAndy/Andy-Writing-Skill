@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "verified_date": "2026-11-13",
+  "files": {
+    "vendor/khazix-writer/SKILL.md": {
+      "path": "vendor/khazix-writer/SKILL.md",
+      "source_repository": "KKKKhazix/khazix-skills",
+      "source_commit": "71cd50ffe1f1f4d400b54be967dc6b59379aff8f",
+      "source_path": "khazix-writer/SKILL.md",
+      "git_blob_sha": "d4423a83f4870433adfd6e1571fae45fb7bb91de",
+      "sha256": "4e9316f731c4a7a9e33c5edcc1f6aa7e58bcf1437720303fa8de64f31dc3e3e2"
+    },
+    "vendor/khazix-writer/references/quality-check.md": {
+      "path": "vendor/khazix-writer/references/quality-check.md",
+      "source_repository": "KKKKhazix/khazix-skills",
+      "source_commit": "71cd50ffe1f1f4d400b54be967dc6b59379aff8f",
+      "source_path": "khazix-writer/references/quality-check.md",
+      "git_blob_sha": "b4fb85fbecd7d099eb94d26820bbed75afa4c1d4",
+      "sha256": "fa1e3cc1af1f30736f3663a6d480f3b6a4681de23a2187750ea526ae2f8bdeae"
+    },
+    "vendor/khazix-writer/references/content_methodology.md": {
+      "path": "vendor/khazix-writer/references/content_methodology.md",
+      "source_repository": "KKKKhazix/khazix-skills",
+      "source_commit": "71cd50ffe1f1f4d400b54be967dc6b59379aff8f",
+      "source_path": "khazix-writer/references/content_methodology.md",
+      "git_blob_sha": "ba6b46a9c308d611aad478afc598664f1c05f709",
+      "sha256": "e9d12c563c04a8795cb1513b222c275df0ecfbc885149d02da2bc817a10bdcd2"
+    },
+    "vendor/khazix-writer/references/style_examples.md": {
+      "path": "vendor/khazix-writer/references/style_examples.md",
+      "source_repository": "KKKKhazix/khazix-skills",
+      "source_commit": "71cd50ffe1f1f4d400b54be967dc6b59379aff8f",
+      "source_path": "khazix-writer/references/style_examples.md",
+      "git_blob_sha": "68bd7ab2f9cbdb0d27f5504b1795fcfea844794d",
+      "sha256": "6ebf6f03072099c5f705d620fcbd2deeac15a2d4340617b72fa861d7f00cce7f"
+    },
+    "vendor/khazix-writer/LICENSE": {
+      "path": "vendor/khazix-writer/LICENSE",
+      "source_repository": "KKKKhazix/khazix-skills",
+      "source_commit": "71cd50ffe1f1f4d400b54be967dc6b59379aff8f",
+      "source_path": "LICENSE",
+      "git_blob_sha": "2d848c9f3fed5317d59e0b88cafa289b42a29d2d",
+      "sha256": "b7f53d07ea4ae2eef26a4f8b28cb7d4df95586e2aa713df408f1ffde9f5a0fea"
+    },
+    "vendor/human-writing/LICENSE": {
+      "path": "vendor/human-writing/LICENSE",
+      "source_repository": "KKKKhazix/human-writing",
+      "source_commit": "a4ed3735e61ae63fd454df253ebecb0916b3a146",
+      "source_path": "human-writing/LICENSE",
+      "git_blob_sha": "086fec6289537bb6c5615dd50338ec770c521558",
+      "sha256": "32ca81a9ae10dda7d18963c9eae733477073906b15ee498d02033c8966dbdcaa"
+    },
+    "vendor/human-writing/SKILL.md": {
+      "path": "vendor/human-writing/SKILL.md",
+      "source_repository": "KKKKhazix/human-writing",
+      "source_commit": "a4ed3735e61ae63fd454df253ebecb0916b3a146",
+      "source_path": "human-writing/SKILL.md",
+      "git_blob_sha": "23980c628d2195ed154e96925a1233967fc693f5",
+      "sha256": "a34f487817a5036a76ed181aea8f36ebe628a8bbb816abfdd628241d937cf626"
+    },
+    "vendor/human-writing/VERSION": {
+      "path": "vendor/human-writing/VERSION",
+      "source_repository": "KKKKhazix/human-writing",
+      "source_commit": "a4ed3735e61ae63fd454df253ebecb0916b3a146",
+      "source_path": "human-writing/VERSION",
+      "git_blob_sha": "26aaba0e86632e4d537006e45b0ec918d780b3b4",
+      "sha256": "1e5b51cde515396a9fa762909cf8ca6584ccc564b325d2eebeea76175fe95c4d"
+    },
+    "vendor/human-writing/dist/human-writing-lite.md": {
+      "path": "vendor/human-writing/dist/human-writing-lite.md",
+      "source_repository": "KKKKhazix/human-writing",
+      "source_commit": "a4ed3735e61ae63fd454df253ebecb0916b3a146",
+      "source_path": "human-writing/dist/human-writing-lite.md",
+      "git_blob_sha": "ce6c325943f4da1f3936641db43cd6cba7b6da23",
+      "sha256": "023ef9da2042d04c9df8eb5960acb6d570b0aa6706bacb989784871e9764b577"
+    },
+    "vendor/human-writing/references/fiction.md": {
+      "path": "vendor/human-writing/references/fiction.md",
+      "source_repository": "KKKKhazix/human-writing",
+      "source_commit": "a4ed3735e61ae63fd454df253ebecb0916b3a146",
+      "source_path": "human-writing/references/fiction.md",
+      "git_blob_sha": "6d2679e9197d83c43d82ae0dee2c0a53fd3ff49b",
+      "sha256": "b4dabb416c68de19bc443d4afcedf88e28cb16260cf1764e179d6e45d5e76ffd"
+    },
+    "vendor/human-writing/references/formats.md": {
+      "path": "vendor/human-writing/references/formats.md",
+      "source_repository": "KKKKhazix/human-writing",
+      "source_commit": "a4ed3735e61ae63fd454df253ebecb0916b3a146",
+      "source_path": "human-writing/references/formats.md",
+      "git_blob_sha": "a93f9e0fe1d94abb0f373954419f8c3447e08bdd",
+      "sha256": "dd63704550574cd562b55f24307815e9172a63320dcfcc6006b3eab0ccc406bb"
+    },
+    "vendor/human-writing/references/forum-prose.md": {
+      "path": "vendor/human-writing/references/forum-prose.md",
+      "source_repository": "KKKKhazix/human-writing",
+      "source_commit": "a4ed3735e61ae63fd454df253ebecb0916b3a146",
+      "source_path": "human-writing/references/forum-prose.md",
+      "git_blob_sha": "8bbc5fc0e7dccc1a6fa13dd457166e7eded303d4",
+      "sha256": "20c22ad9c5c5c3f43ebae6bb7d258cfc42916413a82c2f95a0de9239541641dd"
+    },
+    "vendor/human-writing/references/reality.md": {
+      "path": "vendor/human-writing/references/reality.md",
+      "source_repository": "KKKKhazix/human-writing",
+      "source_commit": "a4ed3735e61ae63fd454df253ebecb0916b3a146",
+      "source_path": "human-writing/references/reality.md",
+      "git_blob_sha": "844e9c9236826cf29de9ccd9c7248eb970a15e02",
+      "sha256": "02004e1fd4dba40d8d50260982ecead81ce3788c7269922b8311514fe8edd0e6"
+    },
+    "vendor/human-writing/references/revision.md": {
+      "path": "vendor/human-writing/references/revision.md",
+      "source_repository": "KKKKhazix/human-writing",
+      "source_commit": "a4ed3735e61ae63fd454df253ebecb0916b3a146",
+      "source_path": "human-writing/references/revision.md",
+      "git_blob_sha": "2f7fa22c0e61b288d332d51649af7f020bc69411",
+      "sha256": "bef11daa208ab8cc122d752e87207de8a8716b975b80e6929236519738e3a73e"
+    },
+    "vendor/human-writing/scripts/check_prose.py": {
+      "path": "vendor/human-writing/scripts/check_prose.py",
+      "source_repository": "KKKKhazix/human-writing",
+      "source_commit": "a4ed3735e61ae63fd454df253ebecb0916b3a146",
+      "source_path": "human-writing/scripts/check_prose.py",
+      "git_blob_sha": "6d5bac772e968204d2905d2d4ddb1bb10d8bc757",
+      "sha256": "76221bbfa27baa6985d342d6b958db7d876ac806d1d888ef948267c75b1162cc"
+    }
+  }
+}

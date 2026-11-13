@@ -1,15 +1,15 @@
 {
   "scenario": "wechat",
-  "scenario_name": "公众号深度文章",
+  "scenario_name": "公众号长文 · 卡兹克原版",
   "matched": [
-    "公众号"
+    "公众号",
+    "卡兹克"
   ],
-  "score": 11,
+  "score": 49,
   "platform": "wechat",
   "pipeline": [
-    "wechat-explosive-article-skill",
-    "GaoMiDuSkill",
-    "humanizer",
+    "khazix-writer",
+    "human-writing",
     "Andy-Content-Checker",
     "MDskill-Web"
   ],

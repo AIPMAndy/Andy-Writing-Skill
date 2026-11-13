@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "first_party": [
     {
       "id": "andy-ip-skill",
@@ -139,6 +139,36 @@
       "license": "MIT (verify upstream on update)",
       "use": "Audience, editorial calendar and content planning",
       "stage": "plan"
+    },
+    {
+      "id": "khazix-writer",
+      "name": "卡兹克公众号长文（官方原版）",
+      "url": "https://github.com/KKKKhazix/khazix-skills/tree/main/khazix-writer",
+      "license": "MIT; retained in vendor/khazix-writer/LICENSE",
+      "use": "Primary WeChat writer: official Khazix narrative structure, rhythm, prototypes and examples; narrator remains the current user",
+      "stage": "draft",
+      "source_commit": "71cd50ffe1f1f4d400b54be967dc6b59379aff8f",
+      "bundled_files": [
+        "vendor/khazix-writer/SKILL.md",
+        "vendor/khazix-writer/references/content_methodology.md",
+        "vendor/khazix-writer/references/style_examples.md",
+        "vendor/khazix-writer/references/quality-check.md"
+      ]
+    },
+    {
+      "id": "human-writing",
+      "name": "活人感写作（官方原版）",
+      "url": "https://github.com/KKKKhazix/human-writing",
+      "license": "MIT; retained in vendor/human-writing/LICENSE",
+      "version": "1.2.0",
+      "use": "Evidence sufficiency and nonfiction boundaries before drafting; remove repetition and AI phrasing after drafting, preserving Khazix structure",
+      "stage": "edit",
+      "source_commit": "a4ed3735e61ae63fd454df253ebecb0916b3a146",
+      "bundled_files": [
+        "vendor/human-writing/SKILL.md",
+        "vendor/human-writing/references/reality.md",
+        "vendor/human-writing/references/revision.md"
+      ]
     }
   ],
   "scenarios": {
@@ -204,7 +234,7 @@
       ]
     },
     "wechat": {
-      "name": "公众号深度文章",
+      "name": "公众号长文 · 卡兹克原版",
       "file": "skills/wechat.md",
       "keywords": [
         "公众号",
@@ -212,14 +242,18 @@
         "公众号文章",
         "深度长文",
         "公众号长文",
-        "微信长文"
+        "微信长文",
+        "卡兹克",
+        "khazix-writer"
       ],
       "pipeline": [
-        "wechat-explosive-article-skill",
-        "GaoMiDuSkill",
-        "humanizer",
+        "khazix-writer",
+        "human-writing",
         "Andy-Content-Checker",
         "MDskill-Web"
+      ],
+      "references": [
+        "references/wechat-standard.md"
       ]
     },
     "xiaohongshu": {

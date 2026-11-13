@@ -1,0 +1,4 @@
+interface:
+  display_name: "Andy 公众号长文与写作"
+  short_description: "以卡兹克原版为公众号长文标准，整合真实素材、去 AI 腔、审稿与排版"
+  default_prompt: "用 $andy-writing-skill 将我的材料写成卡兹克结构与节奏的公众号长文，保留 Andy 的身份和真实事实。"

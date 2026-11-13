@@ -38,14 +38,14 @@ Threads、X 长文、公众号、小红书、口播稿、商业文案……说�
 - 🧩 **组合流水线**：1 个主写作模块 + 按需叠加信息密度、真人表达、风险提醒
 - 📴 **离线可用**：分类与提示词合成无需 API、无需网络、零第三方 Python 依赖
 - 🤖 **可选接入大模型**：兼容 OpenAI Chat Completions 的 HTTPS 服务
-- 🔗 **来源透明**：16 个 Andy 自有 Skill + 3 个外部 Skill，链接接入、不打包、不静默执行
+- 🔗 **来源透明**：16 个 Andy 自有 Skill + 5 个外部 Skill；卡兹克两项原版固定版本随包保存，其他能力保持来源链接
 - ✅ **自动化测试**：GitHub Actions 每次推送跑语法检查和单元测试
 
 > AI 酋长 Andy / AIPMAndy 开源项目。自然表达、原创观点、可验证事实。支持 Claude Code、Codex 等读取 `SKILL.md` 的 Agent，以及独立 Python CLI。
 
 ## 💡 解决什么问题？
 
-你不需要为了写 Threads、公众号、X 长文、口播稿、商业文案，在十几套写作 Skill 之间来回切换。Andy Writing Skill 识别你的**具体任务和平台**，调度一套最小化的写作流水线。它将 Andy 原有的写作 Skill 作为适配器接入，再引入 3 项社区成熟的写作能力，减少重复造轮子。
+你不需要为了写 Threads、公众号、X 长文、口播稿、商业文案，在十几套写作 Skill 之间来回切换。Andy Writing Skill 识别你的**具体任务和平台**，调度一套最小化的写作流水线。它将 Andy 原有的写作 Skill 作为适配器接入，再引入社区成熟的写作能力，减少重复造轮子。
 
 ```text
 用户自然语言需求
@@ -78,7 +78,34 @@ Threads、X 长文、公众号、小红书、口播稿、商业文案……说�
 - ✅ **离线可用**：分类与提示词合成无需 API、无需网络、零第三方 Python 依赖。
 - ✅ **支持可选模型**：配置兼容 OpenAI Chat Completions 的 HTTPS 服务后，`--router llm` 或 `write` 可调用所配置模型；不自动下载第三方 Skill。
 - ⚠️ **有意不做**：静默执行网络仓库代码、绕过平台内容审核、自动发布、所谓“保证爆款”、自动读取 Andy 的私人案例库。
-- ⚠️ 外部和其他自有 Skill **采用来源链接+适配流程**。要使用其原始完整功能，必须另行安装并验证依赖；没有安装时使用本仓库的本地写作流程作为回退。**不要把路由成功理解为某个外部 Skill 已经执行。**
+- ✅ 公众号的 `khazix-writer` 与 `human-writing` **保存了固定版本的原版规则、引用文件及许可证**，`prompt` 会校验文件哈希并读取实际正文。
+- ⚠️ 其他外部和自有 Skill 仍采用**来源链接+适配流程**；完整功能需另行安装验证。加载规则不等于执行脚本，路由成功也不等于完成排版或发布。
+
+## 📝 公众号默认标准：卡兹克官方原版
+
+公众号长文现以「数字生命卡兹克」本人开源的 [khazix-writer](https://github.com/KKKKhazix/khazix-skills/tree/main/khazix-writer) 为唯一主笔，搭配 [human-writing 1.2.0](https://github.com/KKKKhazix/human-writing) 做材料与改稿检查。
+
+**素材核实 → 原版长文起稿与自检 → 活人感二遍编辑 → 交稿 → 按需 MDskill-Web 排版。**
+
+原版写作规则、风格示例、内容方法、四层检查与活人感参考文件已经保存到 `vendor/`，不是只放项目链接。两个来源固定于 2026-11-13 核验的版本，保留各自 MIT 许可；出处与哈希见 [来源清单](./vendor/manifest.json)。CLI 生成公众号提示词时会读取这些真实文件，缺失或变动会明确报错。
+
+- 采用五种文章原型、具体场景开头、逐次发现、口语转场、长短段变化及有依据的回扣。
+- 原版默认长文参考 4000–8000 字，用户指定篇幅优先。材料不足先研究，再缩小范围，不靠假经历填满。
+- 叙述者属于当前用户。卡兹克的示例经历不变成 Andy 的亲历。
+- `human-writing` 只作编辑，事实边界优先；短段、自然口语和有依据的转折不因通用警告被全部抹平。
+- 普通请求交标题与正文；标准出稿包按需增加三个标题、Markdown、真实截图位、来源与一个相关行动入口。HTML 使用已有 MDskill-Web，实际导出后才报告完成。
+
+完整操作标准见 [公众号长文出稿标准](./references/wechat-standard.md)。
+
+```bash
+python3 scripts/router.py route --text '按卡兹克风格写一篇公众号，介绍我的开源项目'
+python3 scripts/router.py prompt --text '把这些材料写成卡兹克节奏的公众号长文，给完整出稿包' > /tmp/andy-wechat-prompt.md
+python3 vendor/human-writing/scripts/check_prose.py /path/to/article.md
+```
+
+检查器只读本地稿件：退出码 0 表示没有命中已覆盖硬错误，1 表示有硬错误，2 表示读取或输入问题。警告需要结合文风判断；它不检查事实真伪，也不预测阅读量。提示词组合不会自动调用检查器、研究资料或生成 HTML。
+
+可选 `write` 模式为公众号使用 12000 个输出 token 的默认预算，其他场景保留 3500；可用 `--max-output-tokens` 调整。实际支持的长度与费用取决于用户配置的模型，不等于免费模型生成。
 
 ## 🚀 安装
 
@@ -140,7 +167,7 @@ API 生成是**可选的付费/有额度消耗能力**，与离线路由区分�
 | “说个冷知识，免费替代付费工具” | cold-knowledge | GaoMiDu / Humanizer / Risk checker |
 | “写 Threads 生活吐槽” | threads | FanZhuan（幽默需要时）/ Humanizer |
 | “帮我写 X 280 字开头的图文长文” | x-longform | GaoMiDu / Humanizer |
-| “写公众号真实故事长文” | wechat | 公众号爆款写作 / GaoMiDu / MDskill-Web |
+| “写公众号真实故事长文 / 卡兹克风格” | wechat | khazix-writer 主笔 / human-writing 二遍编辑 / MDskill-Web 按需排版 |
 | “写 4 分钟口播视频脚本” | video-script | IPClaw-Speech / GaoMiDu |
 | “写求职咨询销售页” | marketing | Copywriting / GaoMiDu / Humanizer |
 | “做 30 天选题规划” | strategy | Content Strategy / CopyFlow |
@@ -168,9 +195,9 @@ API 生成是**可选的付费/有额度消耗能力**，与离线路由区分�
 - [IPClaw-for-Seniors](https://github.com/AIPMAndy/IPClaw-for-Seniors) — 银发创作者写作场景参考。
 - [andytici](https://github.com/AIPMAndy/andytici) — 提词器辅助工具（使用前核实细节）。
 
-完整盘点在 [`catalog.json`](./catalog.json)，包含延展资源、所在阶段与用途。此处是**非执行依赖**：各仓库代码保持原位置维护，不将其代码打包，也不替代其原许可证。
+完整盘点在 [`catalog.json`](./catalog.json)，包含延展资源、所在阶段与用途。上列 Andy 自有资源保持来源链接；公众号使用的两个官方写作模块已按 MIT 许可保存固定版本，见 [`THIRD_PARTY_NOTICES.md`](./THIRD_PARTY_NOTICES.md)。
 
-### 精选的 3 个外部 Skill（来源与许可证）
+### 外部 Skill（来源与许可证）
 
 | Skill | 用在什么时候 | 原作者 | 授权 |
 |---|---|---|---|
@@ -178,7 +205,7 @@ API 生成是**可选的付费/有额度消耗能力**，与离线路由区分�
 | [Copywriting](https://github.com/alirezarezvani/claude-skills/blob/main/marketing-skill/skills/copywriting/SKILL.md) | 商业文案、销售页、清晰的卖点 | Alireza Rezvani | MIT（请核对上游具体文件） |
 | [Content Strategy](https://github.com/alirezarezvani/claude-skills/blob/main/marketing-skill/skills/content-strategy/SKILL.md) | 选题规划、内容架构、排期 | Alireza Rezvani | MIT（请核对上游具体文件） |
 
-这些外部技能以适配器链接方式接入，**没有擅自复制正文或执行不可信脚本**。更新前需复核上游许可证、变更记录、代码风险。
+上表三项保留为来源链接适配器。公众号新增两项已按 MIT 许可保存原版，更新须固定来源版本并复核文件与许可；不自动执行远程代码。
 
 ## 🧱 技术栈
 
@@ -186,7 +213,7 @@ API 生成是**可选的付费/有额度消耗能力**，与离线路由区分�
 |---|---|
 | 路由 CLI | Python 3.10+ 标准库（`scripts/router.py`），零第三方依赖 |
 | Agent 入口 | `SKILL.md` + `skills/*.md` 场景文件，支持 Claude Code、Codex 等 |
-| 技能目录 | `catalog.json`：18 个场景、16 个自有 Skill、3 个外部 Skill |
+| 技能目录 | `catalog.json`：18 个场景、16 个自有 Skill、5 个外部 Skill |
 | 可选模型 | 兼容 OpenAI Chat Completions 的 HTTPS 服务（通过环境变量配置） |
 | 测试 | Python unittest + GitHub Actions |
 
@@ -208,7 +235,7 @@ API 生成是**可选的付费/有额度消耗能力**，与离线路由区分�
 
 ## 🌍 English
 
-Andy Writing Skill is a source-aware writing orchestrator and optional LLM-powered CLI. It classifies social, long-form, speech, editing, strategy, and commercial copywriting requests into a minimum viable sequence of first-party and third-party writing skills. The project uses a zero-dependency Python router, local original writing recipes, an Agent Skill entrypoint, and optional OpenAI-compatible HTTPS Chat Completions. Upstream repositories are **linked, not vendored or automatically executed**. Outputs require human factual review.
+Andy Writing Skill is a source-aware writing orchestrator and optional LLM-powered CLI. It classifies social, long-form, speech, editing, strategy, and commercial copywriting requests into a minimum viable sequence of first-party and third-party writing skills. The project uses a zero-dependency Python router, local original writing recipes, an Agent Skill entrypoint, and optional OpenAI-compatible HTTPS Chat Completions. The official Khazix WeChat writer and human-writing editor are **vendored as pinned, MIT-licensed text snapshots** with integrity checks. Other upstream resources remain linked adapters. Nothing is automatically downloaded or published. Outputs require human factual review.
 
 ## 🛠️ Development
 
