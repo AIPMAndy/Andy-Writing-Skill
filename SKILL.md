@@ -1,6 +1,6 @@
 ---
 name: andy-writing-skill
-description: 为 Andy 调度公众号长文、Threads、X、小红书、口播、商业文案与改稿。公众号默认以数字生命卡兹克官方 khazix-writer 的结构和节奏为首要对标，使用 human-writing 检查材料、事实与 AI 腔。用户说写公众号、卡兹克风格、标准化长文、介绍我的开源项目、按我的风格出稿时使用；具体平台和当前要求优先。
+description: 为 Andy 调度普通公众号长文、公众号商单、Threads、X、小红书、口播、商业文案与改稿。公众号默认以数字生命卡兹克官方 khazix-writer 的结构和节奏为首要对标，使用 human-writing 检查材料、事实与 AI 腔。用户说写公众号、卡兹克风格、标准化长文、介绍我的开源项目、按我的风格出稿时使用；具体平台和当前要求优先。
 ---
 
 # Andy Writing Skill
@@ -15,6 +15,14 @@ description: 为 Andy 调度公众号长文、Threads、X、小红书、口播�
 4. 初稿前读 `vendor/human-writing/SKILL.md` 的材料门槛与 `vendor/human-writing/references/reality.md`。初稿后读 `vendor/khazix-writer/references/quality-check.md` 及 `vendor/human-writing/references/revision.md`。human-writing 在此负责事实与二遍编辑，不另起一个主笔。
 5. 其他场景按所选文件写作，再按需读 `references/andy-voice.md` 和 `references/quality.md`。不要每次加载全部场景和外部技能。
 6. `catalog.json` 中有 `bundled_files` 的两个模块已经保存原版文本；其固定来源、版本、文件哈希见 `vendor/manifest.json`。其他来源链接仍是适配器，不能声称已经安装或运行。用户显式指定 `--skills-dir` 时，可只读加载其他已安装技能。
+
+## 公众号商单专用流程（优先级高于普通公众号）
+
+当任务涉及 **公众号商单 / 品牌合作 / 软植入 / 商单报价 / 交付 / 复购**，优先读取 `agent-skills/andy-wechat-sponsor/SKILL.md` 和该目录 `references/`，通过 `wechat_sponsor` 路由调用。它是本仓库实际内置的独立 Agent Skill，可单独安装到 Claude Code / Codex；**不是只放一个网络链接**。
+
+商单必须先核验品牌、产品卖点、试用证据、广告识别、授权与合同范围，再用固定版本 `khazix-writer` 起稿，`human-writing` 二遍事实编辑。商单文章不得把广告伪装成中立资讯；真实场景和限制优先；未经作者授权不发布。具体交付见 `agent-skills/andy-wechat-sponsor/templates/delivery.md`。
+
+`python3 scripts/router.py route --text '公众号商单 Brief 和报价'` 应选中 `wechat_sponsor`；普通公众号文章仍选中 `wechat`。
 
 ## 公众号执行顺序
 
