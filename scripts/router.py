@@ -90,7 +90,7 @@ def score_route(text: str, platform: str | None = None) -> dict:
     has_speech = any(x in t for x in ("口播", "提词器", "逐字稿", "视频脚本"))
     has_x_long = any(x in t for x in ("x长文", "x 长文", "推特长文", "长推文", "x thread", "twitter长文"))
     named_khazix = any(x in t for x in ("卡兹克", "khazix-writer"))
-    explicit_wechat = specified in ("wechat", "wechat_sponsor") or any(x in t for x in ("公众号", "微信文章", "微信长文"))
+    explicit_wechat = specified in ("wechat", "wechat_sponsor") or (not specified and any(x in t for x in ("公众号", "微信文章", "微信长文")))
     has_wechat_sponsor = (
         any(x in t for x in ("公众号商单", "微信公众号商单", "微信商单", "公众号广告合作",
                              "公众号品牌合作", "公众号报价", "wechat sponsor", "wechat sponsorship"))
