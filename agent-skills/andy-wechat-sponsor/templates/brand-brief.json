@@ -1,0 +1,52 @@
+{
+  "_note": "教学空模板；真实 Brief 含商业秘密，复制后放在用户本地私有目录，不要提交 GitHub。",
+  "campaign_id": "unknown",
+  "status": "intake",
+  "brand": {
+    "name": "unknown",
+    "legal_entity": "unknown",
+    "official_url": "unknown",
+    "verified": false
+  },
+  "product": {
+    "name": "unknown",
+    "version": "unknown",
+    "official_url": "unknown",
+    "tested_by_andy": false
+  },
+  "channel": "微信公众号",
+  "cooperation": {
+    "paid": true,
+    "consideration": "unknown",
+    "ad_label_plan": "广告",
+    "permission_to_publish": false
+  },
+  "target_reader": "unknown",
+  "reader_problem": "unknown",
+  "campaign_goal": "unknown",
+  "deliverables": [
+    {
+      "type": "公众号原创图文",
+      "placement": "unknown",
+      "quantity": 1
+    }
+  ],
+  "must_include": [],
+  "forbidden_claims": [
+    "无证据的效率/收益保证",
+    "虚构本人亲测"
+  ],
+  "evidence": [],
+  "timing": {
+    "brand_feedback_due": "unknown",
+    "publication_date": "unknown"
+  },
+  "commercial_terms": {
+    "quote": "unknown",
+    "payment_schedule": "unknown",
+    "revisions": "unknown",
+    "licensing": "unknown",
+    "exclusivity": "unknown"
+  },
+  "author_approved": false
+}

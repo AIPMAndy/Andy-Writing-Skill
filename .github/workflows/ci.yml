@@ -14,3 +14,11 @@ jobs:
         run: python -m py_compile scripts/router.py
       - name: Tests
         run: python -m unittest discover -s tests -v
+      - name: Sponsor Skill syntax
+        run: python -m py_compile agent-skills/andy-wechat-sponsor/scripts/brief_check.py
+      - name: Sponsor Skill tests
+        run: python -m unittest discover -s agent-skills/andy-wechat-sponsor/tests -v
+      - name: Sponsor Skill routing smoke
+        run: |
+          python scripts/router.py route --text '公众号商单 Brief 和报价' --format json | python -c 'import json,sys; assert json.load(sys.stdin)["scenario"] == "wechat_sponsor"'
+          python scripts/router.py prompt --text '公众号商单，给出选题和交付包' > /dev/null

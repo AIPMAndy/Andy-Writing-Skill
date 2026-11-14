@@ -1,5 +1,5 @@
 {
-  "version": "1.1.0",
+  "version": "1.2.0",
   "first_party": [
     {
       "id": "andy-ip-skill",
@@ -112,6 +112,13 @@
       "url": "https://github.com/AIPMAndy/andytici",
       "use": "Teleprompter-related supporting tool; verify capability before use",
       "stage": "optional"
+    },
+    {
+      "id": "andy-wechat-sponsor",
+      "name": "Andy WeChat Sponsor Skill",
+      "url": "https://github.com/AIPMAndy/Andy-Writing-Skill/tree/main/agent-skills/andy-wechat-sponsor",
+      "use": "First-party local sponsored WeChat workflow: brand fit, quote, brief, writing, ad disclosure, delivery and renewal",
+      "stage": "commercial"
     }
   ],
   "third_party": [
@@ -254,6 +261,39 @@
       ],
       "references": [
         "references/wechat-standard.md"
+      ]
+    },
+    "wechat_sponsor": {
+      "name": "公众号商单｜Andy 专属品牌合作",
+      "file": "skills/wechat-sponsor.md",
+      "keywords": [
+        "公众号商单",
+        "微信公众号商单",
+        "公众号广告合作",
+        "公众号品牌合作",
+        "公众号报价",
+        "微信商单",
+        "品牌 brief",
+        "商单brief",
+        "商业软植入",
+        "商单交付",
+        "商单复盘"
+      ],
+      "pipeline": [
+        "andy-wechat-sponsor",
+        "khazix-writer",
+        "human-writing",
+        "Andy-Content-Checker",
+        "MDskill-Web"
+      ],
+      "references": [
+        "references/wechat-sponsor-standard.md"
+      ],
+      "bundled_local_files": [
+        "agent-skills/andy-wechat-sponsor/SKILL.md",
+        "agent-skills/andy-wechat-sponsor/references/andy-brand.md",
+        "agent-skills/andy-wechat-sponsor/references/sponsor-workflow.md",
+        "agent-skills/andy-wechat-sponsor/references/compliance.md"
       ]
     },
     "xiaohongshu": {

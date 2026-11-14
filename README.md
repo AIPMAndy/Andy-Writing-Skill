@@ -34,7 +34,7 @@ Threads、X 长文、公众号、小红书、口播稿、商业文案……说�
 
 ## ✨ 亮点
 
-- 🧭 **一个入口**：识别任务和平台，自动路由到 18 个写作场景之一
+- 🧭 **一个入口**：识别任务和平台，自动路由到 19 个写作场景之一
 - 🧩 **组合流水线**：1 个主写作模块 + 按需叠加信息密度、真人表达、风险提醒
 - 📴 **离线可用**：分类与提示词合成无需 API、无需网络、零第三方 Python 依赖
 - 🤖 **可选接入大模型**：兼容 OpenAI Chat Completions 的 HTTPS 服务
@@ -80,6 +80,21 @@ Threads、X 长文、公众号、小红书、口播稿、商业文案……说�
 - ⚠️ **有意不做**：静默执行网络仓库代码、绕过平台内容审核、自动发布、所谓“保证爆款”、自动读取 Andy 的私人案例库。
 - ✅ 公众号的 `khazix-writer` 与 `human-writing` **保存了固定版本的原版规则、引用文件及许可证**，`prompt` 会校验文件哈希并读取实际正文。
 - ⚠️ 其他外部和自有 Skill 仍采用**来源链接+适配流程**；完整功能需另行安装验证。加载规则不等于执行脚本，路由成功也不等于完成排版或发布。
+
+## 💼 公众号商单专用 Skill（新增）
+
+**[Andy WeChat Sponsor Skill](./agent-skills/andy-wechat-sponsor/README.md)** 已作为**独立可安装的 Agent Skill** 内置，整合品牌询单、客户筛选、报价与合同风险、实测取证、付费公众号写作、显著广告标识、验收与复盘。**不保证爆款或月入十万**。
+
+```bash
+python3 scripts/router.py route --text '公众号商单，帮我核实品牌 Brief 并报价'
+python3 scripts/router.py prompt --text '为这份公众号品牌合作出三个选题和交付包' > /tmp/wechat-sponsor-prompt.md
+python3 agent-skills/andy-wechat-sponsor/scripts/brief_check.py agent-skills/andy-wechat-sponsor/templates/brand-brief.json
+```
+
+- **单独使用**：复制 `agent-skills/andy-wechat-sponsor` 到 `~/.codex/skills/` 或 `~/.claude/skills/`，可直接激活 `andy-wechat-sponsor`。
+- **组合使用**：路由时完整读取该目录内置规则，继续调用本仓库已固定的长文与真人编辑规则；不额外下载和执行第三方代码。
+- **商业资料保护**：仓库只有空 Brief 与虚构教学示例，不存客户原始文件或个人隐私。广告规则以现行官方文件核验，仍需人工审批发布。
+- **原帖边界**：灵感来自 [西堂的 AI 公众号商单主题文章](https://x.com/xitang_ai/status/2121207382630117537)。检索未能读取其 X Article 全文，因此本工具为独立设计，并不假称逐条复现原文方法。
 
 ## 📝 公众号默认标准：卡兹克官方原版
 
@@ -168,6 +183,7 @@ API 生成是**可选的付费/有额度消耗能力**，与离线路由区分�
 | “写 Threads 生活吐槽” | threads | FanZhuan（幽默需要时）/ Humanizer |
 | “帮我写 X 280 字开头的图文长文” | x-longform | GaoMiDu / Humanizer |
 | “写公众号真实故事长文 / 卡兹克风格” | wechat | khazix-writer 主笔 / human-writing 二遍编辑 / MDskill-Web 按需排版 |
+| “公众号商单 Brief、报价、软植入、复盘” | wechat_sponsor | Andy WeChat Sponsor / khazix-writer / human-writing / 广告识别 / MDskill-Web |
 | “写 4 分钟口播视频脚本” | video-script | IPClaw-Speech / GaoMiDu |
 | “写求职咨询销售页” | marketing | Copywriting / GaoMiDu / Humanizer |
 | “做 30 天选题规划” | strategy | Content Strategy / CopyFlow |
@@ -213,7 +229,7 @@ API 生成是**可选的付费/有额度消耗能力**，与离线路由区分�
 |---|---|
 | 路由 CLI | Python 3.10+ 标准库（`scripts/router.py`），零第三方依赖 |
 | Agent 入口 | `SKILL.md` + `skills/*.md` 场景文件，支持 Claude Code、Codex 等 |
-| 技能目录 | `catalog.json`：18 个场景、16 个自有 Skill、5 个外部 Skill |
+| 技能目录 | `catalog.json`：19 个场景、16 个自有 Skill、5 个外部 Skill |
 | 可选模型 | 兼容 OpenAI Chat Completions 的 HTTPS 服务（通过环境变量配置） |
 | 测试 | Python unittest + GitHub Actions |
 

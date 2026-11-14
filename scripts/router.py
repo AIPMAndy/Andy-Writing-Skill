@@ -25,7 +25,7 @@ THIRD = {x["id"]: x for x in CATA["third_party"]}
 ALIAS = {
     "threads":"threads", "thread":"threads", "串文":"threads",
     "x":"x_short", "twitter":"x_short", "x-long":"x_longform", "xlong":"x_longform",
-    "wechat":"wechat", "公众号":"wechat", "mp":"wechat",
+    "wechat":"wechat", "公众号":"wechat", "mp":"wechat", "wechat-sponsor":"wechat_sponsor", "商单":"wechat_sponsor",
     "xiaohongshu":"xiaohongshu", "小红书":"xiaohongshu", "rednote":"xiaohongshu",
     "video":"video_script", "短视频":"video_script", "口播":"video_script",
     "cold":"cold_knowledge", "冷知识":"cold_knowledge", "知识":"cold_knowledge",
@@ -90,7 +90,17 @@ def score_route(text: str, platform: str | None = None) -> dict:
     has_speech = any(x in t for x in ("口播", "提词器", "逐字稿", "视频脚本"))
     has_x_long = any(x in t for x in ("x长文", "x 长文", "推特长文", "长推文", "x thread", "twitter长文"))
     named_khazix = any(x in t for x in ("卡兹克", "khazix-writer"))
-    explicit_wechat = specified == "wechat" or any(x in t for x in ("公众号", "微信文章", "微信长文"))
+    explicit_wechat = specified in ("wechat", "wechat_sponsor") or (not specified and any(x in t for x in ("公众号", "微信文章", "微信长文")))
+    has_wechat_sponsor = (
+        any(x in t for x in ("公众号商单", "微信公众号商单", "微信商单", "公众号广告合作",
+                             "公众号品牌合作", "公众号报价", "wechat sponsor", "wechat sponsorship"))
+        or (explicit_wechat and any(x in t for x in ("商单", "品牌brief", "品牌 brief", "软植入",
+                                                       "广告合作", "品牌合作", "招商媒体包", "商务报价",
+                                                       "付费推广", "交付验收")))
+    )
+    # An explicitly requested other platform remains authoritative.
+    if specified and specified not in ("wechat", "wechat_sponsor"):
+        has_wechat_sponsor = False
     if named_khazix and not choose_platform(text) and not specified and not has_speech:
         scores["wechat"] += 12
     if specified:
@@ -98,8 +108,12 @@ def score_route(text: str, platform: str | None = None) -> dict:
             specified = "x_longform"
         scores[specified] = scores.get(specified, 0) + 10
         reasons[specified].append("manual platform")
+    if has_wechat_sponsor and not audit_only and not edit_only:
+        # Sponsored articles need a full business/compliance workflow, not generic copywriting.
+        scores["wechat_sponsor"] += 90
+        reasons["wechat_sponsor"].append("explicit WeChat sponsored cooperation")
     if audit_only:
-        scores["compliance"] += 70
+        scores["compliance"] += 110
     elif edit_only:
         scores["editing"] += 65
     elif planning_only:
@@ -133,13 +147,13 @@ def score_route(text: str, platform: str | None = None) -> dict:
         ordering = list(SCENARIOS)
         chosen = max(scores, key=lambda s: (scores[s], -ordering.index(s)))
     pipeline = list(SCENARIOS[chosen]["pipeline"])
-    if chosen not in {"editing", "compliance", "strategy", "wechat"} and any(x in t for x in COMMERCIAL):
+    if chosen not in {"editing", "compliance", "strategy", "wechat", "wechat_sponsor"} and any(x in t for x in COMMERCIAL):
         if "copywriting" not in pipeline:
             pipeline.insert(1, "copywriting")
     if chosen in {"threads", "cold_knowledge", "video_script"} and any(x in t for x in HUMOR):
         if "FanZhuanSkill" not in pipeline:
             pipeline.insert(1, "FanZhuanSkill")
-    if chosen not in {"strategy", "compliance", "editing", "wechat"} and any(x in t for x in BATCH):
+    if chosen not in {"strategy", "compliance", "editing", "wechat", "wechat_sponsor"} and any(x in t for x in BATCH):
         if "copyflow" not in pipeline:
             pipeline.insert(1, "copyflow")
     if chosen != "wechat" and any(x.lower() in t for x in FORMAT_TAGS) and "MDskill-Web" not in pipeline:
@@ -278,6 +292,17 @@ def compose_prompt(task: str, selection: dict, skills_dir: str | None = None) ->
         if path.resolve().parent != (ROOT / "references").resolve() or not path.is_file():
             raise RuntimeError("Unknown local scenario reference: " + relative)
         specialist_context.append(path.read_text(encoding="utf-8"))
+    # Allow only explicitly declared, first-party local sponsor documents.
+    # Do not traverse arbitrary paths or load external references as executable code.
+    sponsor_root = (ROOT / "agent-skills/andy-wechat-sponsor").resolve()
+    for relative in SCENARIOS[selection["scenario"]].get("bundled_local_files", []):
+        path = (ROOT / relative).resolve()
+        if sponsor_root not in path.parents or path.suffix != ".md" or not path.is_file():
+            raise RuntimeError("Invalid bundled local sponsor reference: " + relative)
+        content = path.read_text(encoding="utf-8")
+        if len(content) > 40000:
+            raise RuntimeError("Bundled sponsor reference unexpectedly large: " + relative)
+        specialist_context.append("### " + relative + "\n" + content)
     modules = []
     bundled = load_bundled_skills(selection["pipeline"])
     # Pinned modules are authoritative for this workflow. Do not silently replace
@@ -286,7 +311,7 @@ def compose_prompt(task: str, selection: dict, skills_dir: str | None = None) ->
     for mid in selection["pipeline"]:
         info = OWN.get(mid) or THIRD.get(mid)
         if info:
-            state = " | BUNDLED PINNED TEXT LOADED" if mid in bundled else (" | LOCALLY LOADED" if mid in installed else " | source adapter only")
+            state = " | BUNDLED PINNED TEXT LOADED" if mid in bundled else (" | FIRST-PARTY LOCAL TEXT LOADED" if mid == "andy-wechat-sponsor" and selection["scenario"] == "wechat_sponsor" else (" | LOCALLY LOADED" if mid in installed else " | source adapter only"))
             modules.append(f"- {mid}: {info['use']} | source: {info['url']}" + state)
         else:
             modules.append("- " + mid + ": local original writing recipe")
@@ -335,7 +360,7 @@ def main(argv=None):
             out = prompt if args.command == "prompt" else llm_chat([
                 {"role": "system", "content": "You are an expert writing agent. Follow the writing plan and source fidelity constraints carefully."},
                 {"role": "user", "content": prompt}
-            ], max_tokens=args.max_output_tokens or (12000 if selection["scenario"] == "wechat" else 3500))
+            ], max_tokens=args.max_output_tokens or (12000 if selection["scenario"] in ("wechat", "wechat_sponsor") else 3500))
         if args.output:
             dest = Path(args.output).resolve()
             if dest.exists():
